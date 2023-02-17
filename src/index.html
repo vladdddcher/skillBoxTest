@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="ru">
+  @@include('html/head.html', {
+    'title': 'Главная'
+  })
+  <body>
+    
+    
+<div class="wrapper">
+      
+<!-- @@include('html/header.html', {}) -->
+      
+
+
+
+
+<main class="main" style="background-color: #DCF4FE;">
+
+<section class="ordering">
+  <div class="ordering__item ordering-info">
+    <div class="ordering__content">
+      <div class="ordering__box">
+        <h4 class="ordering__title">Заполните форму, чтобы оформить заказ</h4>
+        <p class="ordering__subtitle">Забронируйте курсы со скидкой, а мы перезвоним, проконсультируем и оформим заказ.</p>
+      </div>
+      
+      <div class="ordering__wrapper">
+        <p class="ordering__text">Итоговая стоимость</p>
+      
+        <div class="ordering__box-price">
+          <div class="ordering__oldprice"><span>000 000</span> ₽</div>
+          <div class="ordering__price">0 000 <sup>₽/мес.</sup></div>
+          <p class="ordering__installment">Рассрочка на NN месяцев</p>
+          <span class="ordering__discount">–00%</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="ordering__item ordering-payment">
+    <div class="ordering__content">
+      <div class="payment">
+        <p class="payment__text ordering__text">Выберите вариант оплаты</p>
+        <div class="payment__cards">
+          <button class="payment__card payment__card--active">
+            <p>Оставить заявку на консультацию</p>
+          </button>
+          <button class="payment__card">
+            <p>Оплатить всю сумму со скидкой 7000 ₽</p>
+            <div class="ordering__tabs-images">
+              <img src="images/content/visa.png" alt="visa">
+              <img src="images/content/mir.png" alt="мир">
+              <img src="images/content/mastercard.png" alt="master card">
+            </div>
+          </button>
+          <button class="payment__card">
+            <p>В рассрочку в Покупай со Сбером</p>
+            <div class="ordering__tabs-images">
+              <img src="images/content/sber.png" alt="sber">
+            </div>
+          </button>
+          <button class="payment__card">
+            <p>В рассрочку в Тинькофф</p>
+            <div class="payment__tabs-images">
+              <img src="images/content/tinkoff.png" alt="Тинькофф">
+            </div>
+          </button>
+        </div>
+      </div>
+      
+      <div class="form">
+        <p class="form__text ordering__text">Заполните контактные данные</p>
+        <form class="form__box">
+          <div class="form__item">
+            <input class="form__input" type="text" required>
+            <label class="form__label">Имя</label>
+          </div>
+          <div class="form__item">
+            <input class="form__input" type="tel" required>
+            <label class="form__label">Телефон</label>
+          </div>
+          <div class="form__item">
+            <input class="form__input" type="email" name="email" required>
+            <label class="form__label">Электронная почта</label>
+          </div>
+          <button class="form__submit" type="submit">Отправить</button>
+        </form>
+        <p class="form__info">Нажимая на кнопку, я соглашаюсь на <a href="#">обработку персональных данных</a> и <a href="#">с правилами пользования Платформой</a></p>
+      </div>
+    </div>
+  </div>
+</section>
+  
+  
+
+
+
+
+
+  
+</main>
+      
+      
+      
+      <!-- @@include('html/footer.html', {}) -->
+    </div>
+    
+    
+    <!-- JS -->
+    @@include('html/script.html', {})
+  </body>
+</html> 

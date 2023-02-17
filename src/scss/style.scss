@@ -1,0 +1,337 @@
+@use 'sass:math';
+@import 'config/fonts';
+@import 'config/mixins';
+@import 'config/vars';
+@import 'config/reset';
+@import 'config/base';
+@import 'layout/header';
+@import 'layout/footer';
+
+/* =======================================================================================================================
+* Библиотеки
+* раскомментировать для использования 
+*/
+// @import 'libs/aos';
+// @import 'libs/swiper';
+
+
+// Общие параметры, шаблоны(заготовки) и вспомагательные классы =======================================================================================================================
+
+
+.ordering {
+    margin: 150px 0;
+    display: flex;
+    justify-content: center;
+    padding: 0 15px;
+    &__item {
+        width: 568px;
+        padding: 40px;
+        background-color: $bgMain;
+        border-radius: 20px
+    }
+    &-info {
+        margin-right: 8px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+    &__title {
+        @include semibold;
+        font-size: 32px;
+        line-height: 40px;
+        margin-bottom: 24px;
+        max-width: 380px;
+    }
+    &__subtitle {
+        line-height: 24px;
+        font-size: 14px;
+        max-width: 400px;
+    }
+    &__text {
+        @include medium;
+        
+        font-size: 20px;
+        line-height: 26px;
+    }
+    &__box {
+        margin-bottom: 40px;
+    }
+    &__box-price {
+        margin-top: 24px;
+        background-color: $bgSecondary;
+        padding: 20px;
+        border-radius: 20px;
+        position: relative;
+    }
+    &__oldprice {
+        display: inline-block;
+        @include medium;
+        margin-bottom: 16px;
+        line-height: 20px;
+        span {
+            position: relative;
+            &::after {
+                position: absolute;
+                content: '';
+                width: 100%;
+                height: 2px;
+                background-color: $textMain;
+                top: 50%;
+                transform: translateY(-50%);
+                left: 0;
+                z-index: 2;
+                border-bottom: 1px solid $bgMain;
+            }
+        }
+    }
+    &__price {
+        @include semibold;
+        font-size: 32px;
+        line-height: 40px;
+        margin-bottom: 4px;
+        sup {
+            font-size: 16px;
+            @include medium;
+        }
+    }
+    &__installment {
+        font-size: 12px;
+        line-height: 16px;
+    }
+    
+    &__discount {
+        width: 48px;
+        height: 48px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 14px;
+        @include medium;
+        background-image: url('../images/icons/star.svg');
+        position: absolute;
+        top: 20px;
+        right: 20px;
+    }
+}
+
+.payment {
+    // display: none;
+    &__cards {
+        display: grid;
+        grid-gap: 8px;
+        grid-template-columns: repeat(2, 1fr);
+        margin: 20px 0 40px;
+        grid-template-rows: repeat(2, minmax(84px, 100%));
+    }
+    &__card {
+        transition: linear .3s;
+        height: 100%;
+        min-width: 138px;
+        padding: 16px;
+        border: 1px solid $border;
+        border-radius: 12px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        text-align: left;
+        &:hover {
+            border: 1px solid #3D3BFF;
+        }
+        p {
+            max-width: 160px;
+            line-height: 20px;
+            font-size: 14px;
+            margin-bottom: 14px;
+        }
+    }
+    &__card--active {
+        border: 2px solid #3D3BFF;
+        &:hover {
+            border: 2px solid #3D3BFF;
+        }
+    }
+}
+
+.form {
+    &__box {
+        margin-bottom: 16px;
+    }
+    &__text {
+        margin-bottom: 32px;
+    }
+    &__item {
+        vertical-align: top;
+        position: relative;
+    }
+    &__input {
+        width: 100%;
+        display: block;
+        border: 1px solid $border;
+        background-color: $bgSecondary;
+        border-radius: 10px;
+        margin-bottom: 16px;
+        padding: 0 18px;
+        height: 56px;
+        transition: linear .2s;
+        padding-top: 16px;
+        &:hover {
+            border: 1px solid #C3C2BE;
+        }
+        &:focus {
+            border: 1px solid #C3C2BE;
+        }
+    }
+    &__label {
+        position: absolute;
+        pointer-events: none;
+        left: 18px;
+        top: 50%;
+        transform: translateY(-50%);
+        white-space: nowrap;
+        overflow: hidden;
+        line-height: 40px;
+        transition: linear .2s;
+      }
+    &__submit {
+        background-color: #3D3BFF;
+        border-radius: 12px;
+        width: 191px;
+        line-height: 20px;
+        padding: 18px 0;
+        font-size: 18px;
+        @include medium;
+        color: #fff;
+        margin-top: 16px;
+        
+        &:hover {
+            background-color: $black;
+        }
+    }
+    .form__input:focus~.form__label,
+    .form__input:not(:focus):valid~.form__label {
+        top: 20px;
+        left: 19.5px;
+        font-size: 11px;
+        color: #6B6B6B;
+    }
+    &__info {
+        color: $textSecondary;
+        font-size: 12px;
+        max-width: 415px;
+        a {
+            line-height: 16px;
+            color: inherit;
+            position: relative;
+            &::before {
+                position: absolute;
+                content: '';
+                bottom: -.5px;
+                left: 0;
+                width: 100%;
+                height: 1px;
+                transition: .2s linear;
+                background-color: $textSecondary;
+            }
+            &:hover {
+                color: $black;
+                &::before {
+                    background-color: $black;
+                }
+            }
+        }
+    }
+}
+
+
+@media (max-width: 1024px) {
+    .ordering__item {
+        width: 100%;
+    }
+    .ordering-info {
+        max-width: 448px;
+    }
+    .ordering-payment {
+        max-width: 472px;
+    }
+}
+
+@media (max-width: 910px) {
+    .ordering {
+        flex-direction: column;
+        padding: 0 36px;
+    }
+    .ordering-info {
+        margin-right: 0;
+        max-width: 100%;
+        margin-bottom: 8px;
+    }
+    .ordering__content {
+        max-width: 456px;
+        margin: 0 auto;
+    }
+    .ordering__subtitle {
+        max-width: 100%;    
+    }
+    .ordering-payment {
+        max-width: 100%;
+    }
+    .form__submit {
+        width: 100%;
+    }
+}
+
+@media (max-width: 768px) {
+    .ordering__title {
+        font-size: 24px;
+        margin-bottom: 16px;
+        line-height: 32px;
+    }
+    .ordering__subtitle {
+        font-size: 14px;
+        line-height: 22px;
+    }
+    .ordering__text {
+        font-size: 18px;
+        line-height: 24px;
+    }
+    .ordering__box-price {
+        margin-top: 20px;
+    }
+    .ordering__oldprice {
+        font-size: 14px;
+        margin-bottom: 12px;
+        line-height: 18px;
+    }
+    .ordering__price {
+        font-size: 24px;
+        line-height: 32px;
+        sup {
+            font-size: 14px;
+        }
+    }
+    .payment__card {
+        padding: 12px;
+        p {
+            line-height: 16px;
+        }
+    }
+    .form__text {
+        margin-bottom: 20px;
+    }
+}
+
+@media (max-width: 460px) {
+    .ordering {
+        padding: 0;
+    }
+    .ordering__item {
+        padding: 40px 20px;
+    }
+    .payment__cards {
+        grid-gap: 4px;
+        p {
+            font-size: 12px;
+            margin-bottom: 10px;
+        }
+    }
+}
